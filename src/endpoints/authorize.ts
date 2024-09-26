@@ -1,4 +1,4 @@
-import * as functions from "firebase-functions";
+import * as functions from "firebase-functions/v1";
 import * as express from "express";
 import { RequestWrapper } from "../models";
 import { AuthorizationEndpoint } from "oauth2-nodejs";

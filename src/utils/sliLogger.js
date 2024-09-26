@@ -14,7 +14,7 @@
  */
 
 const { Logging } = require("@google-cloud/logging");
-const functions = require("firebase-functions");
+const functions = require("firebase-functions/v1");
 
 const projectId = process.env.GCP_PROJECT || process.env.GCLOUD_PROJECT;
 const logName = `reactAppLog.${projectId}`;

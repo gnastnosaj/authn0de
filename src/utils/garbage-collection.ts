@@ -1,4 +1,4 @@
-import * as functions from "firebase-functions";
+import * as functions from "firebase-functions/v1";
 import * as admin from "firebase-admin";
 
 export function garbageCollection(expiry = 2592000000, interval = "every 24 hours") {

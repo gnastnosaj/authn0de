@@ -1,4 +1,4 @@
-import * as functions from 'firebase-functions';
+import * as functions from 'firebase-functions/v1';
 import { RequestWrapper } from '../models';
 import { TokeninfoEndpoint } from 'oauth2-nodejs';
 import { CloudFirestoreDataHandlerFactory } from '../data';

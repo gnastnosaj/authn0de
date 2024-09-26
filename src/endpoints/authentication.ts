@@ -1,4 +1,4 @@
-import * as functions from "firebase-functions";
+import * as functions from "firebase-functions/v1";
 import * as admin from "firebase-admin";
 import * as express from "express";
 import * as cors from "cors";
@@ -41,8 +41,8 @@ class AuthenticationApp {
     authenticationApp.get("/", authenticationGet);
     authenticationApp.get("/authentication", authenticationGet);
     const authenticationPost = async (
-      req: express.Request,
-      resp: express.Response,
+      req: any,
+      resp: any,
     ) => {
       const request = new RequestWrapper(req);
       const encyptedAuthToken = request.getParameter("auth_token")!;
@@ -109,7 +109,7 @@ class AuthenticationApp {
             metadataAction,
           );
 
-          return resp.json({error: JSON.stringify(error)})
+          return resp.json({ error: JSON.stringify(error) })
         }
       }
       if (client?.browserRedirect) {
