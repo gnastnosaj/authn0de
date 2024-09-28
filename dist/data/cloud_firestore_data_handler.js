@@ -189,12 +189,16 @@ class CloudFirestoreDataHandler {
             const db = admin.firestore();
             const client = yield db.collection("oauth2_clients").doc(clientId).get();
             if (client.exists) {
-                const registeredRedirectUri = client.get("redirect_uri");
-                const validRedirectUrl = url.parse(registeredRedirectUri);
-                const redirectUrl = url.parse(redirectUri);
-                return (validRedirectUrl.protocol === redirectUrl.protocol &&
-                    validRedirectUrl.host === redirectUrl.host &&
-                    validRedirectUrl.pathname === redirectUrl.pathname);
+                const registeredRedirectUris = client.get("redirect_uri").split(',');
+                for (const registeredRedirectUri of registeredRedirectUris) {
+                    const validRedirectUrl = url.parse(registeredRedirectUri);
+                    const redirectUrl = url.parse(redirectUri);
+                    if (validRedirectUrl.protocol === redirectUrl.protocol &&
+                        validRedirectUrl.host === redirectUrl.host &&
+                        validRedirectUrl.pathname === redirectUrl.pathname) {
+                        return true;
+                    }
+                }
             }
             return false;
         });
